@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('manager_main');
 });
+Route::get('/videos', [\App\Http\Controllers\VideosController::class, 'display']);
+Route::post('/videos', [\App\Http\Controllers\VideosController::class, 'register']);
