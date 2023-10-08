@@ -14,7 +14,7 @@
         }
         .videoTable {
             background-color: rgb(34, 40, 49);
-            width:125vh;
+            width:150vh;
             border-radius:.5em;
         }
         thead {
@@ -85,6 +85,9 @@
         @endforeach
         </tbody>
     </table>
+    </div>
+    <div>
+        {{ $videos->links() }}
     </div>
     <!-- Add Video Modal -->
     <div class="modal fade" id="addVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

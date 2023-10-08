@@ -17,3 +17,5 @@ Route::get('/', function () {
 });
 Route::get('/videos', [\App\Http\Controllers\VideosController::class, 'display']);
 Route::post('/videos', [\App\Http\Controllers\VideosController::class, 'register']);
+
+Route::get('/analytics', [\App\Http\Controllers\AnalyticsController::class, 'display']);

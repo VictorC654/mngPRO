@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\Video;
-use Illuminate\Http\Request;
 use App\Models\Client;
+use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
+
 class VideosController extends Controller
 {
-    public function display()
+    public function display(): View
     {
-        $videos = Video::all();
+        $videos = Video::orderBy('created_at', 'desc')->paginate(10);
         $clients = Client::all();
         return view('videos.display', [
             'videos' => $videos,

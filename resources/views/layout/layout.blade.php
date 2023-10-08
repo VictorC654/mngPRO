@@ -70,12 +70,12 @@
             width:auto;
             flex-direction: column;">
         <div class="m-5" style="display:flex;align-items:left;flex-direction:row;">
-            <img src="{{ url('/images/profile-pic.jpg') }}" style="
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" style="
                     border:.23em solid rgb(57, 62, 70);
                     border-radius:15px;" width="100" height="100">
             <div style="display:flex;flex-direction:column">
                 <div style="color:lightgray;margin-left:1em;margin-top:1em;font-size:.8em;">Welcome back,</div>
-                <div style="color:rgb(255, 211, 105);font-weight:bold;font-size:2em;margin-left:.4em;">victor88</div>
+                <div style="color:rgb(255, 211, 105);font-weight:bold;font-size:2em;margin-left:.4em;">victorrr</div>
             </div>
         </div>
         <div class="navigator">
