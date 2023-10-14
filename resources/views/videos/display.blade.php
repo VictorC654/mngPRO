@@ -3,18 +3,10 @@
 @section('style')
 
     <style>
-        .sortContainer {
+        .videoTable {
+            box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
             background-color: rgb(34, 40, 49);
             width:125vh;
-            border-radius:.5em;
-            margin-bottom:1em;
-            display:flex;
-            flex-direction: row;
-            padding:1em;
-        }
-        .videoTable {
-            background-color: rgb(34, 40, 49);
-            width:150vh;
             border-radius:.5em;
         }
         thead {

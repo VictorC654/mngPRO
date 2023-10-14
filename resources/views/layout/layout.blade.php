@@ -22,6 +22,7 @@
     <style>
         body {
             font-family: 'Nunito', sans-serif;
+            overflow:hidden;
         }
         .font-color {
             color:rgb(238, 238, 238);
@@ -65,8 +66,8 @@
 <body style="padding:0;margin:0;">
 <div style="display:flex;flex-direction:row;height:100vh;">
     <div class="font-color" style="background-color:rgb(34, 40, 49);
+            box-shadow:200px 15px 20x 3px black;
             display:flex;
-            /*border-right:.1em solid rgb(255, 211, 105);*/
             width:auto;
             flex-direction: column;">
         <div class="m-5" style="display:flex;align-items:left;flex-direction:row;">
@@ -75,7 +76,7 @@
                     border-radius:15px;" width="100" height="100">
             <div style="display:flex;flex-direction:column">
                 <div style="color:lightgray;margin-left:1em;margin-top:1em;font-size:.8em;">Welcome back,</div>
-                <div style="color:rgb(255, 211, 105);font-weight:bold;font-size:2em;margin-left:.4em;">victorrr</div>
+                <div style="color:rgb(255, 211, 105);font-weight:bold;font-size:2em;margin-left:.4em;">victorrrrr</div>
             </div>
         </div>
         <div class="navigator">
@@ -85,9 +86,12 @@
                     <i class="{{ Request::is('videos') ? 'yellow-font-color' : '' }} fa-solid fa-video mr-2"></i>
                     Manage Videos
             </a>
-            <a href="/analytics"><i class="fa-solid fa-chart-line material-icons mr-2"></i> Analytics</a>
-            <a href="/tasks"><i class="fa-solid fa-list-check material-icons mr-2"></i> Tasks</a>
-            <a href="/notes"><i class="fa-solid fa-note-sticky material-icons mr-2"></i> Notes</a>
+            <a href="/analytics" class="{{ Request::is('analytics') ? 'text-white' : '' }}">
+                <i class="{{ Request::is('analytics') ? 'yellow-font-color' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> Analytics</a>
+            <a href="/tasks" class="{{ Request::is('tasks') ? 'text-white' : '' }}">
+                <i class="{{ Request::is('tasks') ? 'yellow-font-color' : '' }} fa-solid fa-list-check material-icons mr-2"></i> Tasks</a>
+            <a href="/notes" class="{{ Request::is('notes') ? 'text-white' : '' }}">
+                <i class="fa-solid fa-note-sticky material-icons mr-2"></i> Notes</a>
             <a href="/settings" style="margin-top:20em;"><i class="fa-solid fa-gear mr-2"></i></a>
         </div>
     </div>
