@@ -25,16 +25,6 @@
         flex-direction: row;
         flex-wrap:wrap;
     }
-    .taskStatus
-    {
-        padding:.7em;
-        color:white;
-        font-size:.8em;
-        position: absolute;
-        display:flex;
-        flex-direction:row;
-        bottom:0;
-    }
     .successNotification
     {
         visibility: hidden;
@@ -90,7 +80,8 @@
     }
     th {
         color:rgb(255, 211, 105);
-        font-size:1.5em;
+        /*color:lightgray;*/
+        font-size:1.2em;letter-spacing:.1em;
         padding:.65em;
     }
     td {
@@ -106,15 +97,43 @@
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
     }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
+        background-color: rgb(34, 40, 49);
+        min-width: 160px;
+        z-index: 1;
+    }
+
+    /* Style the dropdown items */
+    .dropdown-content a {
+        color: lightgray;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of dropdown items on hover */
+    .dropdown-content a:hover {
+        color:rgb(255, 211, 105);
+    }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
+    $(document).ready(function() {
+        // Show/hide the dropdown content when the button is clicked
+        $("#myDropdownBtn").click(function() {
+            $("#filterDropdown").toggle();
+        });
+    });
     $('#exampleModal').on('shown.bs.modal', function () {
         $('#exampleModal').trigger('focus');
         $('#exampleModal').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
-    })
+    });
 </script>
 @endsection
 
@@ -138,10 +157,14 @@
             <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i>
         </button>
         <div style="margin-left:auto;">
-            <button class="filterButton">
+            <button class="filterButton" id="myDropdownBtn">
                 SORT BY
                 <i class="fa-solid fa-sort"></i>
             </button>
+            <div class="dropdown-content" id="filterDropdown">
+                <a href="#">In progress</a>
+                <a href="#">Completed</a>
+            </div>
         </div>
     </div>
     <div class="tasksContainer" style="margin-top:-3em;">
@@ -162,9 +185,9 @@
                     </td>
                     <td>
                         @if(!$task->completed)
-                            <div class="text-primary" style="font-size:.7em;letter-spacing:.2em;color:lightgray;">IN PROGRESS</div>
+                            <div class="bg-warning" style="border-radius:.8em;width:10.8em;font-size:.7em;letter-spacing:.2em;color:white;padding:1em;">IN PROGRESS</div>
                         @else
-                            <div class="text-success" style="font-size:.7em;letter-spacing:.2em;color:lightgray;">FINISHED</div>
+                            <div class="bg-success" style="border-radius:.8em;width:8em;font-size:.7em;letter-spacing:.2em;color:lightgray;padding:1em;">FINISHED</div>
                         @endif
                     </td>
                     <td style="max-width:50vh;font-size:.9em;">

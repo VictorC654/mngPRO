@@ -69,14 +69,15 @@
             box-shadow:200px 15px 20x 3px black;
             display:flex;
             width:auto;
-            flex-direction: column;">
-        <div class="m-5" style="display:flex;align-items:left;flex-direction:row;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" style="
+            flex-direction: column;
+            min-width:20em;">
+        <div style="display:flex;align-items:center;flex-direction:column;margin-top:5em;">
+            <img src="https://img.freepik.com/premium-vector/joyful-man-shows-gesture-cool-i-like-cartoon-style_165429-876.jpg" style="
                     border:.23em solid rgb(57, 62, 70);
                     border-radius:15px;" width="100" height="100">
-            <div style="display:flex;flex-direction:column">
-                <div style="color:lightgray;margin-left:1em;margin-top:1em;font-size:.8em;">Welcome back,</div>
-                <div style="color:rgb(255, 211, 105);font-weight:bold;font-size:2em;margin-left:.4em;">victorrrrr</div>
+            <div style="display:flex;flex-direction:column;align-items: center;">
+                <div style="color:lightgray;font-weight:bold;font-size:2em;margin-top:.5em;">Victor C.</div>
+                <div class="bg-warning" style="color:whitesmoke;font-size:.7em;margin-top:.5em;letter-spacing:.1em;padding:.5em;font-weight:bold;border-radius:.5em;">mngPRO</div>
             </div>
         </div>
         <div class="navigator">
@@ -90,9 +91,7 @@
                 <i class="{{ Request::is('analytics') ? 'yellow-font-color' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> Analytics</a>
             <a href="/tasks" class="{{ Request::is('tasks') ? 'text-white' : '' }}">
                 <i class="{{ Request::is('tasks') ? 'yellow-font-color' : '' }} fa-solid fa-list-check material-icons mr-2"></i> Tasks</a>
-            <a href="/notes" class="{{ Request::is('notes') ? 'text-white' : '' }}">
-                <i class="fa-solid fa-note-sticky material-icons mr-2"></i> Notes</a>
-            <a href="/settings" style="margin-top:20em;"><i class="fa-solid fa-gear mr-2"></i></a>
+            <a href="/settings" style=""><i class="fa-solid fa-gear material-icons mr-2"></i> Profile Settings</a>
         </div>
     </div>
     <div style="background-color:rgb(57, 62, 70);flex-grow:1;">

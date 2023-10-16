@@ -6,7 +6,7 @@
         .videoTable {
             box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
             background-color: rgb(34, 40, 49);
-            width:125vh;
+            width:140vh;
             border-radius:.5em;
         }
         thead {
@@ -52,7 +52,7 @@
         <thead>
             <tr>
 {{--                <th>#</th>--}}
-                <th>Theme</th>
+                <th style="font-size:1.2em;letter-spacing:.1em;">THEME</th>
                 <th><i class="fa-solid fa-user"></i></th>
                 <th><i class="fa-solid fa-dollar-sign material-icons mr-2"></i></th>
                 <th><i class="fa-regular fa-calendar material-icons mr-2"></i></th>
