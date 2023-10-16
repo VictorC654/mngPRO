@@ -119,6 +119,42 @@
         color:rgb(255, 211, 105);
     }
 
+    .addButton
+    {
+        background-color:rgb(57, 62, 70);
+        color:white;
+        padding:.8em;
+        margin-left:-.5em;
+        width:6em;
+        border-bottom-right-radius: .5em .5em;
+        transition:.5s all ease;
+        border-top-right-radius: .5em .5em;
+    }
+    .addButton:hover
+    {
+        background:white;
+        color:black;
+        transition:.5s all ease;
+    }
+
+    .cancelButton
+    {
+        transition:.5s all ease;
+        background-color:rgb(57, 62, 70);
+        color:white;
+        padding:.8em;
+        margin-left:-.5em;
+        width:6em;
+        border-bottom-left-radius: .5em .5em;
+        border-top-left-radius: .5em .5em;
+    }
+    .cancelButton:hover
+    {
+        background:#DC4C64 !important;
+        color:black;
+        transition:.5s all ease;
+    }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script>
@@ -230,8 +266,12 @@
                             </div>
                         </div>
                         <div class="modal-footer" style="border:none;">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" style="background-color:rgb(57, 62, 70);border: .15em solid rgb(255, 211, 105);color:rgb(255, 211, 105);" class="btn btn-success">Add</button>
+                            <button class="cancelButton" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button type="submit" class="addButton">
+                                Add
+                            </button>
                         </div>
                     </div>
                 </div>

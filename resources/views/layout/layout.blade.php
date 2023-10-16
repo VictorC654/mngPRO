@@ -38,10 +38,11 @@
         }
         .navigator a {
             color:lightgray;
-            font-size:1.3em;
-            margin-top:1em;
+            font-size:1.2em;
+            margin-top:2em;
             text-decoration: none;
             transition: all .5s ease;
+            /*letter-spacing:.2em;*/
         }
         .navigator a:hover {
             color:white;
@@ -60,13 +61,17 @@
         }
         .material-icons {
             vertical-align: middle;
+            align-self: center;
+        }
+
+        .selected
+        {
         }
     </style>
 </head>
 <body style="padding:0;margin:0;">
 <div style="display:flex;flex-direction:row;height:100vh;">
-    <div class="font-color" style="background-color:rgb(34, 40, 49);
-            box-shadow:200px 15px 20x 3px black;
+    <div style="background-color:rgb(34, 40, 49);
             display:flex;
             width:auto;
             flex-direction: column;
@@ -81,17 +86,17 @@
             </div>
         </div>
         <div class="navigator">
-            <a href="/" class="{{ Request::is('/') ? 'text-white' : '' }}">
-                <i class="{{ Request::is('/') ? 'yellow-font-color' : '' }} fa-solid fa-house material-icons mr-2"></i> Home</a>
-            <a href="/videos" class="{{ Request::is('videos') ? 'text-white' : '' }}">
+               <a href="/" class=" {{ Request::is('/') ? 'text-white' : '' }}">
+                   <i style="vertical-align: middle;" class="{{ Request::is('/') ? 'yellow-font-color' : '' }} fa-solid fa-house material-icons mr-2"></i> HOME</a>
+                <a href="/videos" class="{{ Request::is('videos') ? 'text-white' : '' }}">
                     <i class="{{ Request::is('videos') ? 'yellow-font-color' : '' }} fa-solid fa-video mr-2"></i>
-                    Manage Videos
+                MANAGE VIDEOS
             </a>
             <a href="/analytics" class="{{ Request::is('analytics') ? 'text-white' : '' }}">
-                <i class="{{ Request::is('analytics') ? 'yellow-font-color' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> Analytics</a>
+                <i class="{{ Request::is('analytics') ? 'yellow-font-color' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> ANALYTICS</a>
             <a href="/tasks" class="{{ Request::is('tasks') ? 'text-white' : '' }}">
-                <i class="{{ Request::is('tasks') ? 'yellow-font-color' : '' }} fa-solid fa-list-check material-icons mr-2"></i> Tasks</a>
-            <a href="/settings" style=""><i class="fa-solid fa-gear material-icons mr-2"></i> Profile Settings</a>
+                <i class="{{ Request::is('tasks') ? 'yellow-font-color' : '' }} fa-solid fa-list-check material-icons mr-2"></i> TASKS</a>
+            <a href="/settings" style=""><i class="fa-solid fa-gear material-icons mr-2"></i> SETTINGS</a>
         </div>
     </div>
     <div style="background-color:rgb(57, 62, 70);flex-grow:1;">
