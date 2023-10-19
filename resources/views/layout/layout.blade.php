@@ -20,16 +20,10 @@
     </style>
 
     <style>
-        body {
+        body
+        {
             font-family: 'Nunito', sans-serif;
             overflow:hidden;
-        }
-        .font-color {
-            color:rgb(238, 238, 238);
-        }
-        .yellow-font-color {
-            color:rgb(255, 211, 105);
-            font-weight:bold;
         }
         .navigator {
             display:flex;
@@ -42,30 +36,14 @@
             margin-top:2em;
             text-decoration: none;
             transition: all .5s ease;
-            /*letter-spacing:.2em;*/
         }
         .navigator a:hover {
             color:white;
             transition: all .5s ease;
         }
-        .logo {
-            position:absolute;
-            top:.5em;
-            border: 1em red;
-            margin-left:43em;
-            font-weight:bold;
-            padding:.1em;
-            font-size:2em;
-            color:rgb(255, 211, 105);
-            border-bottom:.07em solid rgb(255, 211, 105);
-        }
         .material-icons {
             vertical-align: middle;
             align-self: center;
-        }
-
-        .selected
-        {
         }
     </style>
 </head>

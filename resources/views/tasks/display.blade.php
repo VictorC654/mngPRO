@@ -47,7 +47,6 @@
         width:140vh;
         margin-bottom:4em;
         border-bottom:.2em solid rgb(34, 40, 49);
-        /*border-bottom: .2em solid white;*/
         box-shadow: rgb(34, 40, 49);
         color:white;
         padding:1em;
@@ -58,16 +57,26 @@
     .filterButton
     {
         background:transparent;
-        font-size:.9em;
+        font-size:1em;
         letter-spacing:.2em;
         color:lightgray;
         padding:1em;
         transition: .2s all ease;
+        font-weight:bold;
     }
     .filterButton:hover
     {
         transition: .2s all ease;
-        color:rgb(255, 211, 105) !important;
+        color:white !important;
+    }
+    .underText
+    {
+        /*font-weight:bold;*/
+        color:rgb(255, 211, 105);
+        align-self: center;
+        font-size:.9em;
+        letter-spacing:.2em;
+        margin-top:-.5em;
     }
     .tasksTable
     {
@@ -80,7 +89,6 @@
     }
     th {
         color:rgb(255, 211, 105);
-        /*color:lightgray;*/
         font-size:1.2em;letter-spacing:.1em;
         padding:.65em;
     }
@@ -99,26 +107,23 @@
     }
     .dropdown-content {
         display: none;
+        margin-top:3em;
+        margin-left:.5em;
         position: absolute;
         box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
         background-color: rgb(34, 40, 49);
         min-width: 160px;
         z-index: 1;
     }
-
-    /* Style the dropdown items */
     .dropdown-content a {
-        color: lightgray;
-        padding: 12px 16px;
+        color: rgb(128, 128, 128);
+        padding:1.5em;
         text-decoration: none;
         display: block;
     }
-
-    /* Change color of dropdown items on hover */
     .dropdown-content a:hover {
-        color:rgb(255, 211, 105);
+        color:white;
     }
-
     .addButton
     {
         background-color:rgb(57, 62, 70);
@@ -136,7 +141,6 @@
         color:black;
         transition:.5s all ease;
     }
-
     .cancelButton
     {
         transition:.5s all ease;
@@ -151,7 +155,7 @@
     .cancelButton:hover
     {
         background:#DC4C64 !important;
-        color:black;
+        color:white;
         transition:.5s all ease;
     }
 
@@ -164,6 +168,13 @@
             $("#filterDropdown").toggle();
         });
     });
+    window.onclick = function(event) {
+        var dropdownBtn = document.getElementById("myDropdownBtn");
+        var filterDropdown = document.getElementById("filterDropdown");
+        if (event.target != dropdownBtn) {
+            filterDropdown.style.display = "none";
+        }
+    }
     $('#exampleModal').on('shown.bs.modal', function () {
         $('#exampleModal').trigger('focus');
         $('#exampleModal').on('hidden.bs.modal', function () {
@@ -192,14 +203,24 @@
         <button type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addVideoModal">
             <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i>
         </button>
-        <div style="margin-left:auto;">
-            <button class="filterButton" id="myDropdownBtn">
+        <div style="background-color:;margin-left:auto;display:flex;flex-direction:column;width:11em;">
+            <button style="margin-bottom:-.4em;" class="filterButton" id="myDropdownBtn">
                 SORT BY
                 <i class="fa-solid fa-sort"></i>
             </button>
+                @if($request->is("tasks"))
+                <div class="underText">ALL TASKS</div>
+                @endif
+                @if($request->is("tasks/sort-by/completed"))
+                    <div class="underText">FINISHED</div>
+                @endif
+                @if($request->is("tasks/sort-by/in-progress"))
+                    <div class="underText">IN PROGRESS</div>
+                @endif
             <div class="dropdown-content" id="filterDropdown">
-                <a href="#">In progress</a>
-                <a href="#">Completed</a>
+                <a href="/tasks/" style="{{ Request::is("tasks") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">ALL TASKS</a>
+                <a href="/tasks/sort-by/completed" style="{{ Request::is("tasks/sort-by/completed") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">COMPLETED</a>
+                <a href="/tasks/sort-by/in-progress" style="{{  Request::is("tasks/sort-by/in-progress") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">IN PROGRESS</a>
             </div>
         </div>
     </div>
@@ -210,13 +231,14 @@
                     <th>TITLE</th>
                     <th>STATUS</th>
                     <th>DESCRIPTION</th>
+                    <th>DATE</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
             @foreach ($tasks as $task)
                 <tr>
-                    <td style="font-weight:bold;">
+                    <td style="font-weight:bold;max-width:13em;">
                         {{ $task->title }}
                     </td>
                     <td>
@@ -226,8 +248,11 @@
                             <div class="bg-success" style="border-radius:.8em;width:8em;font-size:.7em;letter-spacing:.2em;color:lightgray;padding:1em;">FINISHED</div>
                         @endif
                     </td>
-                    <td style="max-width:50vh;font-size:.9em;">
+                    <td style="max-width:50vh;font-size:1em;">
                         {{ $task->description }}
+                    </td>
+                    <td>
+                        <div class="bg-primary" style="border-radius:.8em;width:9em;font-size:.8em;color:white;padding:1em;font-weight:bold;"> {{ $task->created_at }}</div>
                     </td>
                     <td>
                         <div style="display:flex;">
@@ -251,6 +276,9 @@
             @endforeach
             </tbody>
         </table>
+    </div>
+    <div style="margin-top:2em;">
+        {{ $tasks->links() }}
     </div>
     <div style="margin-left:-9em;" class="modal fade" id="addVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <form action="/tasks" method="POST">

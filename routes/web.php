@@ -25,3 +25,8 @@ Route::get('/tasks', [\App\Http\Controllers\TasksController::class, 'display']);
 Route::post('/tasks', [\App\Http\Controllers\TasksController::class, 'register']);
 Route::post('/tasks/complete-task/{id}', [\App\Http\Controllers\TasksController::class, 'complete'])->name("completeTask");
 Route::post('/tasks/delete-task/{id}', [\App\Http\Controllers\TasksController::class, 'delete'])->name('deleteTask');
+
+// SORTING
+
+Route::get('/tasks/sort-by/completed', [App\Http\Controllers\TasksController::class, 'sortByCompleted'])->name("sortByCompleted");
+Route::get('/tasks/sort-by/in-progress', [App\Http\Controllers\TasksController::class, 'sortByInProgress'])->name("sortByInProgress");
