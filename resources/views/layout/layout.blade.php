@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/653369ca55.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js"></script>
     <title>mngPRO</title>
     @yield('style')
 
@@ -33,7 +34,7 @@
         .navigator a {
             color:lightgray;
             font-size:1.2em;
-            margin-top:2em;
+            margin-top:1.3em;
             text-decoration: none;
             transition: all .5s ease;
         }
@@ -55,25 +56,25 @@
             flex-direction: column;
             min-width:20em;">
         <div style="display:flex;align-items:center;flex-direction:column;margin-top:5em;">
-            <img src="https://img.freepik.com/premium-vector/joyful-man-shows-gesture-cool-i-like-cartoon-style_165429-876.jpg" style="
+            <img src="https://www.moldova.org/wp-content/uploads/2021/06/nyan-cat-1.gif" style="
                     border:.23em solid rgb(57, 62, 70);
                     border-radius:15px;" width="100" height="100">
             <div style="display:flex;flex-direction:column;align-items: center;">
-                <div style="color:lightgray;font-weight:bold;font-size:2em;margin-top:.5em;">Victor C.</div>
+                <div style="color:lightgray;font-weight:bold;font-size:2em;margin-top:.5em;">victorrr</div>
                 <div class="bg-warning" style="color:whitesmoke;font-size:.7em;margin-top:.5em;letter-spacing:.1em;padding:.5em;font-weight:bold;border-radius:.5em;">mngPRO</div>
             </div>
         </div>
         <div class="navigator">
                <a href="/" class=" {{ Request::is('/') ? 'text-white' : '' }}">
-                   <i style="vertical-align: middle;" class="{{ Request::is('/') ? 'yellow-font-color' : '' }} fa-solid fa-house material-icons mr-2"></i> HOME</a>
+                   <i style="vertical-align: middle;" class="{{ Request::is('/') ? 'text-warning' : '' }} fa-solid fa-house material-icons mr-2"></i> HOME</a>
                 <a href="/videos" class="{{ Request::is('videos') ? 'text-white' : '' }}">
-                    <i class="{{ Request::is('videos') ? 'yellow-font-color' : '' }} fa-solid fa-video mr-2"></i>
+                    <i class="{{ Request::is('videos') ? 'text-warning' : '' }} fa-solid fa-video mr-2"></i>
                 MANAGE VIDEOS
             </a>
             <a href="/analytics" class="{{ Request::is('analytics') ? 'text-white' : '' }}">
-                <i class="{{ Request::is('analytics') ? 'yellow-font-color' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> ANALYTICS</a>
-            <a href="/tasks" class="{{ Request::is('tasks') ? 'text-white' : '' }}">
-                <i class="{{ Request::is('tasks') ? 'yellow-font-color' : '' }} fa-solid fa-list-check material-icons mr-2"></i> TASKS</a>
+                <i class="{{ Request::is('analytics') ? 'text-warning' : '' }} fa-solid fa-chart-line material-icons mr-2"></i> ANALYTICS</a>
+                <a href="/tasks" class="{{ Request::is(["tasks", "tasks/sort-by/completed", "tasks/sort-by/in-progress"]) ? 'text-white' : '' }}">
+                    <i class="{{ Request::is(["tasks", "tasks/sort-by/completed", "tasks/sort-by/in-progress"]) ? 'text-warning' : '' }} fa-solid fa-list-check material-icons mr-2"></i> TASKS</a>
             <a href="/settings" style=""><i class="fa-solid fa-gear material-icons mr-2"></i> SETTINGS</a>
         </div>
     </div>

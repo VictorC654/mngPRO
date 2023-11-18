@@ -18,6 +18,7 @@ Route::get('/', function () {
 // manage videos
 Route::get('/videos', [\App\Http\Controllers\VideosController::class, 'display']);
 Route::post('/videos', [\App\Http\Controllers\VideosController::class, 'register']);
+Route::post('/videos/delete-video/{id}', [\App\Http\Controllers\VideosController::class, 'destroy']);
 // analytics
 Route::get('/analytics', [\App\Http\Controllers\AnalyticsController::class, 'display']);
 // tasks
@@ -30,3 +31,5 @@ Route::post('/tasks/delete-task/{id}', [\App\Http\Controllers\TasksController::c
 
 Route::get('/tasks/sort-by/completed', [App\Http\Controllers\TasksController::class, 'sortByCompleted'])->name("sortByCompleted");
 Route::get('/tasks/sort-by/in-progress', [App\Http\Controllers\TasksController::class, 'sortByInProgress'])->name("sortByInProgress");
+
+Route::post('/clients/add-client', [App\Http\Controllers\ClientController::class, 'register']);

@@ -71,7 +71,7 @@
     }
     .underText
     {
-        /*font-weight:bold;*/
+        font-weight:bold;
         color:rgb(255, 211, 105);
         align-self: center;
         font-size:.9em;
@@ -83,6 +83,8 @@
         width:140vh;
         box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
         background-color: rgb(34, 40, 49);
+        border-radius:.5em;
+
     }
     thead {
         border-bottom:.15em solid white;
@@ -188,7 +190,7 @@
     <div class="pageControl">
         <div style="margin-right:1.4em;padding:1.2em;border-right:.2em solid rgb(34, 40, 49);">
             @if ($allTasks != 0)
-            <div style="font-size:1.3em;">
+            <div style="font-size:1.3em;font-weight:bold;">
                 {{ $completedTasks }} / {{ $allTasks }}
             </div>
             <div style="font-size:.7em;letter-spacing:.2em;color:lightgray;">
@@ -203,7 +205,7 @@
         <button type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addVideoModal">
             <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i>
         </button>
-        <div style="background-color:;margin-left:auto;display:flex;flex-direction:column;width:11em;">
+        <div style="margin-left:auto;display:flex;flex-direction:column;width:11em;">
             <button style="margin-bottom:-.4em;" class="filterButton" id="myDropdownBtn">
                 SORT BY
                 <i class="fa-solid fa-sort"></i>
@@ -219,7 +221,7 @@
                 @endif
             <div class="dropdown-content" id="filterDropdown">
                 <a href="/tasks/" style="{{ Request::is("tasks") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">ALL TASKS</a>
-                <a href="/tasks/sort-by/completed" style="{{ Request::is("tasks/sort-by/completed") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">COMPLETED</a>
+                <a href="/tasks/sort-by/completed" style="{{ Request::is("tasks/sort-by/completed") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">FINISHED</a>
                 <a href="/tasks/sort-by/in-progress" style="{{  Request::is("tasks/sort-by/in-progress") ? 'color:white;font-weight:bold;' : '' }} font-size:.9em;">IN PROGRESS</a>
             </div>
         </div>

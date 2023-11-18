@@ -11,10 +11,9 @@ class TasksController extends Controller
     public function getDataForTasks(): array
     {
         $allTasks = Task::all()->count();
-        $completedTasks = Task::where('completed', '=', true)->get();
-        $cTasksCounted = $completedTasks->count();
+        $completedTasks = Task::where('completed', '=', true)->get()->count();
         $request = Request();
-        return [$allTasks, $cTasksCounted, $request];
+        return [$allTasks, $completedTasks, $request];
     }
     public function display(): View
     {
