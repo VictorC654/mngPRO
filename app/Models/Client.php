@@ -12,6 +12,6 @@ class Client extends Model
 
     public function videos()
     {
-        return $this->hasMany(Video::class);
+//        dd($this->hasMany(Video::class));
     }
 }

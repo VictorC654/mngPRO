@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\Client;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -12,6 +11,11 @@ class ClientController extends Controller
         Client::create([
             'name' => $request['clientName'],
         ])->save();
+        return redirect()->back();
+    }
+    public function destroy($id)
+    {
+        Client::findOrFail($id)->delete();
         return redirect()->back();
     }
 }

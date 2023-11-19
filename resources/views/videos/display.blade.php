@@ -22,18 +22,54 @@
             width:140vh;
             border-radius:.5em;
         }
-        thead {
-            border-bottom:.15em solid white;
+        .videoTable thead {
+            border-bottom:.15em solid rgb(255, 211, 105);
         }
-        th {
-            color:rgb(255, 211, 105);
+        .videoTable th {
             font-size:1.5em;
+            color:white;
             padding:.65em;
         }
-        td {
+        .videoTable td {
             color:white;
             padding:1.1em;
             border-bottom:.15em solid rgb(57, 62, 70);
+        }
+        .manageClientsTable
+        {
+            background-color:transparent;
+            width:70vh;
+            border:none;
+        }
+        .manageClientsTable th
+        {
+            font-size:.9em;
+            font-weight:bold;
+            color:white;
+            border-bottom:.15em solid rgb(255, 211, 105);
+            padding:.9em;
+        }
+        .manageClientsTable td
+        {
+            border-bottom:.15em solid rgb(57, 62, 70);
+            padding:1em;
+        }
+        .deleteButton
+        {
+            display:flex;
+            justify-content: center;
+            background:RGB(238,114,114);
+            color:lightgray;
+            padding:.6em;
+            border-radius:.8em;
+            transition:.5s all ease;
+            width:3.5em;
+        }
+        .deleteButton:hover
+        {
+            color:white;
+            background:#DC4C64;
+            transition:.5s all ease;
         }
         .updateTaskButton
         {
@@ -53,18 +89,39 @@
             color:rgb(255, 211, 105) !important;
             transition:all .5s ease;
         }
-        .deleteButton
+        .addButton
         {
-            background:transparent;
-            border:none;
-            font-size:1.1em;
+            background-color:rgb(57, 62, 70);
             color:white;
-            transition:.2s all ease;
+            padding:.8em;
+            margin-left:-.5em;
+            width:6em;
+            border-bottom-right-radius: .5em .5em;
+            transition:.5s all ease;
+            border-top-right-radius: .5em .5em;
         }
-        .deleteButton:hover
+        .addButton:hover
         {
-            color: #d9534f;
-            transition:.2s all ease;
+            background:white;
+            color:black;
+            transition:.5s all ease;
+        }
+        .cancelButton
+        {
+            transition:.5s all ease;
+            background-color:rgb(57, 62, 70);
+            color:white;
+            padding:.8em;
+            margin-left:-.5em;
+            width:6em;
+            border-bottom-left-radius: .5em .5em;
+            border-top-left-radius: .5em .5em;
+        }
+        .cancelButton:hover
+        {
+            background:#DC4C64 !important;
+            color:white;
+            transition:.5s all ease;
         }
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -78,6 +135,9 @@
         });
         $('#addClientModal').on('shown.bs.modal', function () {
             $('#addClientModal').trigger('focus')
+        });
+        $('#manageClientsModal').on('shown.bs.modal', function () {
+            $('#manageClientsModal').trigger('focus')
         })
     </script>
 @endsection
@@ -87,9 +147,11 @@
         <button type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addVideoModal">
             <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i><span style="font-size:.9em;margin-left:.5em;">Register a record</span>
         </button>
+        @if($numberOfClients !== 0)
         <button style="margin-left:1em;" type="submit" class="updateTaskButton" data-toggle="modal" data-target="#manageClientsModal ">
             <i style="font-size:1.3em;" class="fa-solid fa-users-line"></i><span style="font-size:.9em;margin-left:.5em;">Manage clients</span>
         </button>
+        @endif
         <button style="margin-left:1em;" type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addClientModal">
             <i style="font-size:1.3em;" class="fa-solid fa-user-plus"></i><span style="font-size:.9em;margin-left:.5em;">Add a client</span>
         </button>
@@ -168,6 +230,7 @@
     <div style="margin-top:2em;">
         {{ $videos->links() }}
     </div>
+    <!-- Add Client Modal -->
     <div style="margin-left:-9em;"  class="modal fade" id="addClientModal" tabindex="-1" role="dialog" aria-hidden="true">
         <form action="/clients/add-client" method="POST">
             @csrf
@@ -181,14 +244,65 @@
                         </div>
                     </div>
                     <div class="modal-footer" style="border:none;">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" style="background-color:rgb(57, 62, 70);border: .15em solid rgb(255, 211, 105);color:rgb(255, 211, 105);" class="btn btn-success">Add</button>
+                        <button class="cancelButton" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" class="addButton">
+                            Add
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         </form>
     </div>
+    <!-- Manage Clients Modal -->
+    <div style="margin-left:-9em;"  class="modal fade" id="manageClientsModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div style="display:flex;align-items:center;margin-top:1vh;">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="background-color:rgb(34, 40, 49);width:50em;min-height:20em;">
+                        <div class="modal-body" style="color:white;padding:2em;">
+                            <div style="display:flex;flex-direction:column;">
+                                <div class="yellow-font-color" style="font-size:1.5em;font-weight:bold;">Manage Clients</div>
+                                <div style="display:flex;justify-content: center;margin-top:1.5em;">
+                                        <table class="manageClientsTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Number of Videos</th>
+                                                    <th>Profit</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach ($clients as $client)
+                                            <tr>
+                                                <td><b>{{ $client->name }}</b></td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>
+                                                    <form method="POST" action="/clients/delete-client/{{ $client->id }}">
+                                                        @csrf
+                                                        <button type="submit" class="deleteButton">
+                                                            <i class="fa-solid fa-user-minus"></i>
+                                                        </button></form>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="border:none;">
+                            <button class="cancelButton" style="border-radius:.5em !important;" data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     <!-- Add Video Modal -->
     <div style="margin-left:-9em;" class="modal fade" id="addVideoModal" tabindex="-1" role="dialog" aria-labelledby="addVideoModalLabel" aria-hidden="true">
         <form action="/videos" method="POST">
@@ -217,8 +331,12 @@
                       </div>
                   </div>
                               <div class="modal-footer" style="border:none;">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                              <button type="submit" style="background-color:rgb(57, 62, 70);border: .15em solid rgb(255, 211, 105);color:rgb(255, 211, 105);" class="btn btn-success">Add</button>
+                                  <button class="cancelButton" data-dismiss="modal">
+                                      Cancel
+                                  </button>
+                                  <button type="submit" class="addButton">
+                                      Add
+                                  </button>
                            </div>
                       </div>
                   </div>

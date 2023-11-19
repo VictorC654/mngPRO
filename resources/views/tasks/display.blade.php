@@ -177,9 +177,9 @@
             filterDropdown.style.display = "none";
         }
     }
-    $('#exampleModal').on('shown.bs.modal', function () {
-        $('#exampleModal').trigger('focus');
-        $('#exampleModal').on('hidden.bs.modal', function () {
+    $('#addTaskModal').on('shown.bs.modal', function () {
+        $('#addTaskModal').trigger('focus');
+        $('#addTaskModal').on('hidden.bs.modal', function () {
             $(this).find('form').trigger('reset');
         })
     });
@@ -282,7 +282,7 @@
     <div style="margin-top:2em;">
         {{ $tasks->links() }}
     </div>
-    <div style="margin-left:-9em;" class="modal fade" id="addVideoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style="margin-left:-9em;" class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModal" aria-hidden="true">
         <form action="/tasks" method="POST">
             @csrf
             <div style="display:flex;align-items:center;margin-top:10vh;">
