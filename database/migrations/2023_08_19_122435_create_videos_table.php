@@ -16,11 +16,10 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('theme');
-            $table->foreignId('client_id');
-            $table->string('client');
             $table->integer('profit');
             $table->integer('duration_in_minutes');
             $table->timestamps();
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
     }
 

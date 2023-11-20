@@ -43,6 +43,7 @@
         }
         .manageClientsTable th
         {
+            letter-spacing:.1em;
             font-size:.9em;
             font-weight:bold;
             color:white;
@@ -86,7 +87,9 @@
         }
         .updateTaskButton:hover
         {
-            color:rgb(255, 211, 105) !important;
+            /*color:rgb(255, 211, 105) !important;*/
+            background-color:white;
+            color:rgb(34, 40, 49);
             transition:all .5s ease;
         }
         .addButton
@@ -145,7 +148,7 @@
 @section('content')
     <div class="pageControl">
         <button type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addVideoModal">
-            <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i><span style="font-size:.9em;margin-left:.5em;">Register a record</span>
+            <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i><span style="font-size:.9em;margin-left:.5em;">Add a record</span>
         </button>
         @if($numberOfClients !== 0)
         <button style="margin-left:1em;" type="submit" class="updateTaskButton" data-toggle="modal" data-target="#manageClientsModal ">
@@ -157,7 +160,7 @@
         </button>
         <div style="padding:1em;margin-left:auto;display:flex;flex-direction:row;">
             @if($numberOfClients !== 0)
-                <div class="" style="min-width:10em;margin-right:1em;justify-content:center;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;display:flex;flex-direction:row;align-items:center;">
+                <div style="min-width:10em;margin-right:1em;justify-content:center;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;display:flex;flex-direction:row;align-items:center;">
                     <b style="font-size:.8em !important;margin-right:.3em;">{{ $numberOfClients }}</b>
                     <span style="font-size:.8em;">
                     @if($numberOfClients === 1)
@@ -169,7 +172,7 @@
                 </div>
             @endif
             @if($totalVideos !== 0)
-            <div style="min-width:10em;margin-right:1em;display:flex;justify-content:center;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;flex-direction:row;align-items:center;">
+            <div style="min-width:10em;margin-right:1em;display:flex;background-color: rgb(34, 40, 49);justify-content:center;border-radius:1em;padding:1em;color:lightgray;flex-direction:row;align-items:center;">
                 <b style="font-size:.8em !important;margin-right:.3em;">{{ $totalVideos }}</b>
                 <span style="font-size:.8em;">
                     @if($totalVideos === 1)
@@ -179,8 +182,8 @@
                     @endif
                 </span>
             </div>
-                    <div class="bg-success" style="padding:1em;display:flex;justify-content:center;min-width:10em;border-radius:1em;color:lightgray;flex-direction:row;align-items:center;">
-                        <b style="font-size:.8em;margin-right:.3em;">{{ $totalProfit }}MDL</b>  <span style="font-size:.8em;">INCOME</span>
+                    <div style="min-width:10em;display:flex;background-color: rgb(34, 40, 49);justify-content:center;border-radius:1em;padding:1em;color:#85BB65;;flex-direction:row;align-items:center;">
+                        <b style="font-size:.8em !important;margin-right:.3em;">{{ $totalProfit }}MDL</b> <span style="font-size:.8em;">INCOME</span>
                     </div>
             @else
                 <div style="min-width:10em;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;display:flex;flex-direction:row;justify-content: center;">
@@ -200,14 +203,14 @@
                     <th><i class="fa-solid fa-dollar-sign material-icons mr-2"></i></th>
                     <th><i class="fa-regular fa-calendar material-icons mr-2"></i></th>
                     <th><i class="fa-solid fa-clock material-icons mr-2"></i></th>
-                    <th></th>
+                    <th><i class="fa-solid fa-sliders" style="margin-left:.6em;"></i></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($videos as $video)
                     <tr>
                         <td><b>{{ $video->theme }}</b></td>
-                        <td>{{ $video->client }}</td>
+                        <td>{{ $video->client->name }}</td>
                         <td style="color:#85BB65;"><b>+{{ $video->profit }}MDL</b></td>
                         <td>{{ $video->created_at }}</td>
                         <td>{{ ($video->duration_in_minutes) }}MIN</td>
@@ -236,10 +239,15 @@
             @csrf
         <div style="display:flex;align-items:center;margin-top:25vh;">
             <div class="modal-dialog" role="document">
-                <div class="modal-content" style="background-color:rgb(34, 40, 49);width:50em;height:17em;">
+                <div class="modal-content" style="background-color:rgb(34, 40, 49);width:50em;height:22em;">
                     <div class="modal-body" style="color:white;padding:2em;">
                         <div style="display:flex;flex-direction:column;">
-                            <div class="yellow-font-color" style="font-size:1.5em;font-weight:bold;">Add a client</div>
+                            <div style="display:flex;flex-direction:column;justify-content:center;padding:1em;">
+                                <i style="padding:.1em;margin:0 auto;font-size:2em;" class="fa-solid fa-user-plus"></i>
+                                <span style="color:lightgray;padding:.7em;margin:0 auto;font-size:.9em;letter-spacing:.1em;">
+                                        ADD A CLIENT
+                                    </span>
+                            </div>
                             <input name="clientName" class="mt-8" type="text" placeholder="Client's name" style="border-radius:.3em;outline:none;padding:1em;font-size:1em;background-color:rgb(57, 62, 70);color:white;">
                         </div>
                     </div>
@@ -263,23 +271,28 @@
                     <div class="modal-content" style="background-color:rgb(34, 40, 49);width:50em;min-height:20em;">
                         <div class="modal-body" style="color:white;padding:2em;">
                             <div style="display:flex;flex-direction:column;">
-                                <div class="yellow-font-color" style="font-size:1.5em;font-weight:bold;">Manage Clients</div>
-                                <div style="display:flex;justify-content: center;margin-top:1.5em;">
+                                <div style="display:flex;flex-direction:column;justify-content:center;padding:1em;">
+                                    <i style="padding:.1em;margin:0 auto;font-size:2em;" class="fa-solid fa-users-line"></i>
+                                    <span style="color:lightgray;padding:.7em;margin:0 auto;font-size:.9em;letter-spacing:.1em;">
+                                        MANAGE CLIENTS
+                                    </span>
+                                </div>
+                                <div style="display:flex;justify-content: center;margin-top:.5em;">
                                         <table class="manageClientsTable">
                                             <thead>
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Number of Videos</th>
-                                                    <th>Profit</th>
-                                                    <th></th>
+                                                    <th>NAME</th>
+                                                    <th>VIDEOS</th>
+                                                    <th>PROFIT</th>
+                                                    <th><i class="fa-solid fa-sliders" style="margin-left:1.5em;"></i></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach ($clients as $client)
                                             <tr>
                                                 <td><b>{{ $client->name }}</b></td>
-                                                <td>-</td>
-                                                <td>-</td>
+                                                <td>{{ $client->videos->count() }}</td>
+                                                <td style="font-weight:bold;color:#85BB65;">+{{ $client->totalProfit }} MDL</td>
                                                 <td>
                                                     <form method="POST" action="/clients/delete-client/{{ $client->id }}">
                                                         @csrf
@@ -312,7 +325,12 @@
               <div class="modal-content" style="background-color:rgb(34, 40, 49);width:50em;height:35em;">
                   <div class="modal-body" style="color:white;padding:2em;">
                       <div style="display:flex;flex-direction:column;">
-                          <div class="yellow-font-color" style="font-size:1.5em;font-weight:bold;">Register a record</div>
+                          <div style="display:flex;flex-direction:column;justify-content:center;padding:1em;">
+                              <i style="padding:.1em;margin:0 auto;font-size:2em;" class="fa-solid fa-pen-to-square"></i>
+                              <span style="color:lightgray;padding:.7em;margin:0 auto;font-size:.9em;letter-spacing:.1em;">
+                                        ADD A RECORD
+                                    </span>
+                          </div>
                             <input name="theme" class="mt-8" type="text" placeholder="Theme" style="border-radius:.3em;outline:none;padding:1em;font-size:1em;background-color:rgb(57, 62, 70);color:white;">
                                  <select name="client_id" class="mt-3" style="margin-bottom:-15px;padding:1em;background-color:rgb(57, 62, 70);outline:none;color:white;border-radius:.3em;">
                                     <option selected>Select client</option>

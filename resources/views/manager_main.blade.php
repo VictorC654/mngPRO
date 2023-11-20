@@ -10,10 +10,12 @@
         </div>
             <p class="mt-2" style="color:lightgray;font-size:1em;">
                     <b>mngPRO</b> is a personal project that I am developing for my brother , so he can more easily
-                    track his work and analyze his profits, amount of work , etc.<br>
-                    Check the sidebar in order to start <b>tracking your progress<b>, creating tasks and <b>managing
-                    your work</b>.
+                    track his work and analyze his profits, amount of work and more.<br>
             </p>
+        <p style="color:lightgray;font-size:1em;">
+            So far, I have added a couple functionalities: <br>
+           <b> - The Manage Videos page, </b> where a user can add , delete records of videos , add clients, manage and see client statistics.<br>
+            <b>- The Tasks page, </b> a simple task managing page, where you can update tasks as you complete them.
+        </p>
     </div>
-</div>
     @endsection
