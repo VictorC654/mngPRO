@@ -130,6 +130,48 @@
         input::-webkit-inner-spin-button {
             -webkit-appearance: none;
         }
+        @keyframes appearNotification {
+            0% { opacity:0;right:3em; }
+            25% { opacity:.25; right:3.5em; }
+            50% { opacity:0.55;right:4em; }
+            75% { opacity:.75; right:4.5em; }
+            100% { opacity:0.8; }
+        }
+        .notification
+        {
+            animation: appearNotification .5s;
+            animation-timing-function:linear;
+            color:#17B169;
+            font-weight:bold;
+            border-radius:1em;
+            font-size:1em;
+            box-shadow:0px 15px 20px 3px rgb(34, 40, 49);
+            /*background-color: rgb(34, 40, 49);*/
+            background-color:lightgray;
+            position:fixed;
+            /*background-color:rgb(255, 211, 105);*/
+            opacity:0.8;
+            bottom:5em;
+            right:5em;
+            padding:1.5em;
+            width:30em;
+
+        }
+        .notificationCloseButton
+        {
+            background:transparent;
+            border:none;
+            cursor:pointer;
+            margin-left:auto;
+            color: rgb(128, 128, 128);
+            transition:.5s all ease;
+
+        }
+        .notificationCloseButton:hover
+        {
+            transition:.5s all ease;
+            color:black;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script>
@@ -142,10 +184,21 @@
         $('#manageClientsModal').on('shown.bs.modal', function () {
             $('#manageClientsModal').trigger('focus')
         })
+        setTimeout(function() {
+           $('div.notification').fadeOut('slow');
+        }, 3000);
     </script>
 @endsection
 
 @section('content')
+    @if(session('status'))
+    <div class="notification" id="notification" style="display:{{ session('status') ? 'flex' : 'flex' }};" onload="hideNotification()">
+            <div><i class="fa-solid fa-circle-exclamation"></i> {{ session('status') }}</div>
+        <a href="#notification" id="closeNotification" class="notificationCloseButton" data-dismiss="alert">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+    </div>
+    @endif
     <div class="pageControl">
         <button type="submit" class="updateTaskButton" data-toggle="modal" data-target="#addVideoModal">
             <i style="font-size:1.3em;" class="fa-solid fa-pen-to-square"></i><span style="font-size:.9em;margin-left:.5em;">Add a record</span>
@@ -186,9 +239,9 @@
                         <b style="font-size:.8em !important;margin-right:.3em;">{{ $totalProfit }}MDL</b> <span style="font-size:.8em;">INCOME</span>
                     </div>
             @else
-                <div style="min-width:10em;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;display:flex;flex-direction:row;justify-content: center;">
-                   <span style="font-size:.9em;">NO RECORDS</span>
-                </div>
+{{--                <div style="min-width:10em;background-color: rgb(34, 40, 49);border-radius:1em;padding:1em;color:lightgray;display:flex;flex-direction:row;justify-content: center;">--}}
+{{--                   <span style="font-size:.9em;">NO RECORDS</span>--}}
+{{--                </div>--}}
             @endif
         </div>
     </div>
@@ -274,7 +327,7 @@
                                 <div style="display:flex;flex-direction:column;justify-content:center;padding:1em;">
                                     <i style="padding:.1em;margin:0 auto;font-size:2em;" class="fa-solid fa-users-line"></i>
                                     <span style="color:lightgray;padding:.7em;margin:0 auto;font-size:.9em;letter-spacing:.1em;">
-                                        MANAGE CLIENTS
+                                        CLIENTS
                                     </span>
                                 </div>
                                 <div style="display:flex;justify-content: center;margin-top:.5em;">

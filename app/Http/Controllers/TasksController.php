@@ -57,7 +57,7 @@ class TasksController extends Controller
             'description' => $request['description']
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['message' => 'Task has been created.']);
     }
     public function complete($id, Request $request): RedirectResponse
     {

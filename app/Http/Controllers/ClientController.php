@@ -11,11 +11,11 @@ class ClientController extends Controller
         Client::create([
             'name' => $request['clientName'],
         ])->save();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Client has been added successfully!');
     }
     public function destroy($id)
     {
         Client::findOrFail($id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Client has been deleted successfully!');
     }
 }

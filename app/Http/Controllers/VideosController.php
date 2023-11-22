@@ -63,11 +63,11 @@ class VideosController extends Controller
             'profit' => $request['profit'],
             'duration_in_minutes' => $request['duration_in_minutes'],
         ])->save();
-        return redirect('/videos');
+        return redirect('/videos')->with('status', 'Record has been added successfully!');
     }
     public function destroy($id)
     {
         Video::findOrFail($id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Record has been deleted successfully!');
     }
 }
